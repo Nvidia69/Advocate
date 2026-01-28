@@ -18,6 +18,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
+    <!-- Preload Critical Image for Faster Loading -->
+    <link rel="preload" as="image" href="https://files.catbox.moe/075yt4.png">
+
     <!-- Animation Styles -->
     <style>
         .fade-in {
@@ -158,58 +161,56 @@
         const HomePage = ({ navigate }) => (
             <div className="fade-in">
                 {/* Hero */}
-                <section className="relative min-h-[600px] md:h-[700px] flex items-center bg-navy-900 text-white overflow-hidden py-10 md:py-0">
+                <section className="relative min-h-[600px] flex items-center bg-navy-900 text-white overflow-hidden py-12 md:py-20">
                     <div className="absolute inset-0 z-0">
                         <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=2000" alt="Legal" className="w-full h-full object-cover opacity-20" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/95 to-navy-900/40"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/95 to-navy-900"></div>
                     </div>
                     <div className="container mx-auto px-6 relative z-10">
-                        <div className="flex flex-col md:flex-row items-center gap-12">
+                        <div className="flex flex-col items-center justify-center text-center gap-8">
                             
-                            {/* Left Side: Text Content */}
-                            <div className="w-full md:w-3/5 text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                                    <span className="h-0.5 w-12 bg-gold-500"></span>
-                                    <span className="text-gold-500 font-bold uppercase tracking-widest text-sm">Legal Excellence Since 2011</span>
+                            {/* 1. Profile Circle (Centered & Top) */}
+                            <div className="group relative mt-4">
+                                <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full border-4 border-gold-500/50 p-2 shadow-2xl shadow-gold-500/20 bg-navy-800/50 backdrop-blur-sm transition-transform duration-500 hover:scale-105 mx-auto">
+                                     <div className="absolute inset-0 rounded-full border border-gold-500/30 scale-110 animate-pulse"></div>
+                                     <img 
+                                        src="https://files.catbox.moe/075yt4.png" 
+                                        alt="Advocate Ram Bhawan Chaurasiya" 
+                                        className="w-full h-full rounded-full object-cover"
+                                        fetchPriority="high"
+                                    />
                                 </div>
-                                <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-6">
-                                    Justice Served With <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-yellow-200">Integrity.</span>
+                                {/* Mobile Number Badge */}
+                                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 text-white bg-navy-800/95 px-6 py-2 rounded-full border border-slate-600 backdrop-blur-md shadow-xl w-max whitespace-nowrap z-20">
+                                    <Icons.Phone className="w-4 h-4 text-gold-500" />
+                                    <span className="font-bold tracking-wide text-sm md:text-base">+91 94150 65890</span>
+                                </div>
+                            </div>
+
+                            {/* 2. Text Content (Centered Below Photo) */}
+                            <div className="max-w-4xl mx-auto mt-6">
+                                <div className="flex items-center justify-center gap-3 mb-4 opacity-90">
+                                    <span className="h-px w-8 md:w-16 bg-gold-500"></span>
+                                    <span className="text-gold-500 font-bold uppercase tracking-widest text-xs md:text-sm">Legal Excellence Since 2011</span>
+                                    <span className="h-px w-8 md:w-16 bg-gold-500"></span>
+                                </div>
+                                
+                                <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-2 text-white">
+                                    Advocate Ram Bhawan Chaurasiya
                                 </h1>
-                                <p className="text-slate-300 text-lg mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
-                                    Advocate Ram Bhawan Chaurasiya provides expert legal counsel in High Court & District Courts. Dedicated to protecting your rights with strategic and results-driven representation.
+                                <p className="text-gold-400 text-sm md:text-lg font-bold uppercase tracking-widest mb-6">Senior Legal Counsel • High Court & District Court</p>
+
+                                <p className="text-slate-300 text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+                                    Justice Served With <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-yellow-200 font-bold">Integrity</span>. <br className="hidden md:block"/>Dedicated to protecting your rights with strategic and results-driven representation.
                                 </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                                
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                     <button onClick={() => navigate('appointment')} className="bg-gold-500 hover:bg-gold-600 text-white px-8 py-4 rounded font-bold uppercase tracking-wide transition-all shadow-lg shadow-gold-500/20">
                                         Book Consultation
                                     </button>
                                     <button onClick={() => navigate('about')} className="border border-slate-600 hover:border-gold-500 hover:text-gold-500 text-white px-8 py-4 rounded font-bold uppercase tracking-wide transition-all">
                                         Learn More
                                     </button>
-                                </div>
-                            </div>
-
-                            {/* Right Side: Profile Circle */}
-                            <div className="w-full md:w-2/5 flex flex-col items-center justify-center md:items-end mt-8 md:mt-0">
-                                <div className="text-center group">
-                                    <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-gold-500/50 p-2 shadow-2xl shadow-gold-500/10 mb-6 bg-navy-800/50 backdrop-blur-sm transition-transform duration-500 hover:scale-105">
-                                         <div className="absolute inset-0 rounded-full border border-gold-500/30 scale-110 animate-pulse"></div>
-                                         <img 
-                                            src="https://files.catbox.moe/075yt4.png" 
-                                            alt="Advocate Ram Bhawan Chaurasiya" 
-                                            className="w-full h-full rounded-full object-cover"
-                                        />
-                                    </div>
-                                    <h3 className="text-3xl font-serif font-bold text-white mb-2">Advocate Ram Bhawan Chaurasiya</h3>
-                                    <div className="inline-block bg-gold-500/10 px-4 py-1 rounded-full border border-gold-500/20 mb-4">
-                                        <p className="text-gold-400 text-sm font-bold uppercase tracking-widest">Senior Legal Counsel</p>
-                                    </div>
-                                    
-                                    {/* Added Mobile Number */}
-                                    <div className="flex items-center justify-center gap-2 text-white bg-navy-800/80 px-6 py-2 rounded-full border border-slate-700 backdrop-blur-sm shadow-lg mx-auto w-max">
-                                        <Icons.Phone className="w-5 h-5 text-gold-500" />
-                                        <span className="font-bold tracking-wide text-lg">+91 94150 65890</span>
-                                    </div>
-
                                 </div>
                             </div>
 
